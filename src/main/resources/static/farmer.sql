@@ -66,7 +66,7 @@ create table fertilizer_ingredient
 
 
 # 插入初始数据
-insert into demo.t_user(username, password, userType)
+insert into t_user(username, password, userType)
 VALUES ('admin', '20181225', 1),
        ('tech', '20181225', 2),
        ('tech2', '20181225', 2),
