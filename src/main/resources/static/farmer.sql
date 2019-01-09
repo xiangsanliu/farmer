@@ -2,7 +2,7 @@
 create database farmer default charset utf8 collate utf8_general_ci;
 use farmer;
 
-#建表:生产材料管理
+# 用户和权限
 create table t_user
 (
   username varchar(20) not null
@@ -10,7 +10,21 @@ create table t_user
   password varchar(20) null,
   userType tinyint     not null
 );
+create table t_permission
+(
+  id  int auto_increment
+    primary key,
+  url varchar(100) null
+);
+create table user_permission
+(
+  userType     int not null,
+  permissionId int not null,
+  primary key (userType, permissionId)
+);
 
+
+#建表:生产材料管理
 create table t_material
 (
   materialName varchar(20) not null
@@ -19,7 +33,6 @@ create table t_material
   materialType tinyint     null comment '种子为 0, 原料为 1.'
 )
   comment '农业原料数据表';
-
 create table purchase_record
 (
   rId          int auto_increment
@@ -39,7 +52,6 @@ create table t_ingredient
     primary key,
   ingredientName varchar(20) null
 );
-
 create table fertilizer
 (
   id       int auto_increment
@@ -49,7 +61,6 @@ create table fertilizer
   fee      int         null comment '劳务费',
   lossRate int         null comment '总重量损耗比'
 );
-
 create table fertilizer_ingredient
 (
   fertilizerId int not null,
@@ -72,6 +83,36 @@ VALUES ('admin', '20181225', 1),
        ('tech2', '20181225', 2),
        ('market', '20181225', 3),
        ('guest', '', 4);
+
+insert into t_permission(id, url)
+values (1, '/getAllMaterialsAndRecords'),
+       (2, '/createPurchaseRecord'),
+       (3, '/removeRecord'),
+       (4, '/createFI'),
+       (5, '/getAllFertilizersAndIngredients'),
+       (6, '/getIngredientsByFertilizer'),
+       (7, '/removeFI'),
+       (8, '/initUser');
+
+insert into user_permission
+values (1, 1),
+       (1, 2),
+       (1, 3),
+       (1, 4),
+       (1, 5),
+       (1, 6),
+       (1, 7),
+       (1, 8),
+       (2, 1),
+       (2, 2),
+       (2, 3),
+       (2, 4),
+       (2, 5),
+       (2, 6),
+       (2, 7),
+       (2, 8),
+       (3, 8),
+       (4, 8);
 
 insert into t_material(materialName, price)
 VALUES ('番茄', 5),
@@ -111,10 +152,6 @@ VALUES ('番茄', 5),
        ('稻草', 1),
        ('锯末', 2),
        ('树叶', 1);
-
-insert into fertilizer(fname, fee, lossrate)
-VALUES ('肥料1', 500, 5),
-       ('农药1', 400, 5);
 
 insert into t_ingredient(ingredientName)
 values ('鸡粪'),

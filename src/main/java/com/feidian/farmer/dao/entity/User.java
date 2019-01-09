@@ -3,9 +3,13 @@ package com.feidian.farmer.dao.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
+
+import java.util.List;
 
 @Getter
 @Setter
+@ToString
 public class User {
 
     // 用户名
@@ -17,7 +21,6 @@ public class User {
     // 用户类型
     Short userType;
 
-    // 用户可用菜单
-    String menu;
+    List<String> permissions;
 
 }

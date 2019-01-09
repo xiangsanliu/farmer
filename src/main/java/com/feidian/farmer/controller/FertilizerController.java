@@ -1,7 +1,5 @@
 package com.feidian.farmer.controller;
 
-import com.alibaba.fastjson.JSON;
-import com.feidian.farmer.dao.entity.PurchaseRecord;
 import com.feidian.farmer.service.FertilizerService;
 import com.feidian.farmer.share.ResponseBean;
 import org.springframework.beans.factory.annotation.Autowired;

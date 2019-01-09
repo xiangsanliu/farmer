@@ -39,6 +39,14 @@ public class ResponseBean {
         return new ResponseBean(500, msg, null);
     }
 
+    public static ResponseBean auth() {
+        return new ResponseBean(401, null, null);
+    }
+
+    public static ResponseBean forbid() {
+        return new ResponseBean(403, null, null);
+    }
+
     private ResponseBean(Integer status, String msg, Object content) {
         this.status = status;
         this.msg = msg;

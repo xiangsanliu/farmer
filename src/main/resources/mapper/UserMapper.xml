@@ -9,4 +9,12 @@
         from t_user
         where username = #{username}
     </select>
+    <select id="selectPermissionsByUserType" resultType="java.lang.String">
+        select url
+        from user_permission up
+                 left join t_permission p on up.permissionId = p.id
+        where up.userType = #{userType}
+    </select>
+
+
 </mapper>

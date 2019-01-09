@@ -33,10 +33,13 @@ public class FertilizerService {
     }
 
 
+    /**
+     * 组装一对多的关系
+     * 这段代码太丑了，一定要找个时间把它干掉！！！
+     */
     @Transactional
     public void saveFI(String data) {
         FIVO object = JSON.parseObject(data, FIVO.class);
-        System.out.println(object.toString());
         Fertilizer fertilizer = new Fertilizer();
         fertilizer.setFDate(object.getFDate());
         fertilizer.setFName(object.getFName());
@@ -52,7 +55,6 @@ public class FertilizerService {
             fertilizerIngredient.setAmount(item.getAmount());
             fertilizerIngredients.add(fertilizerIngredient);
         });
-        System.out.println(fertilizerIngredients);
         if (fertilizerIngredients.size() > 0) {
             fertilizerMapper.insertFIs(fertilizerIngredients);
         }
