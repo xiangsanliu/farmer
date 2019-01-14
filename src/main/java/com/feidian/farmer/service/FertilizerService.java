@@ -1,6 +1,7 @@
 package com.feidian.farmer.service;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.feidian.farmer.dao.entity.Fertilizer;
 import com.feidian.farmer.dao.entity.FertilizerIngredient;
 import com.feidian.farmer.dao.entity.Ingredient;
@@ -28,7 +29,9 @@ public class FertilizerService {
         return map;
     }
 
-    public List<Ingredient> getIngredientsByFertilizer(long fId) {
+    public List<Ingredient> getIngredientsByFertilizer(String data) {
+        JSONObject obj = JSON.parseObject(data);
+        long fId = obj.getLong("fId");
         return fertilizerMapper.selectIngredientsByFertilizer(fId);
     }
 
@@ -60,7 +63,9 @@ public class FertilizerService {
         }
     }
 
-    public void remove(Long fId) {
+    public void removeById(String data) {
+        JSONObject obj = JSON.parseObject(data);
+        long fId = obj.getLong("fId");
         fertilizerMapper.deleteOne(fId);
     }
 

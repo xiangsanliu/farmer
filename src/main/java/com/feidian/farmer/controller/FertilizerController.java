@@ -32,14 +32,12 @@ public class FertilizerController {
 
     @RequestMapping(value = "/getIngredientsByFertilizer", method = RequestMethod.POST)
     public ResponseBean getIngredientsByFertilizer(@RequestBody String data) {
-        long fId = Long.valueOf(data);
-        return ResponseBean.ok("success", fertilizerService.getIngredientsByFertilizer(fId));
+        return ResponseBean.ok("success", fertilizerService.getIngredientsByFertilizer(data));
     }
 
     @RequestMapping(value = "/removeFI", method = RequestMethod.POST)
     public ResponseBean removeFI(@RequestBody String data) {
-        long fId = Long.valueOf(data);
-        fertilizerService.remove(fId);
+        fertilizerService.removeById(data);
         return ResponseBean.ok("删除成功");
     }
 

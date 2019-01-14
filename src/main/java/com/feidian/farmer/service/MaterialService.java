@@ -1,6 +1,8 @@
 package com.feidian.farmer.service;
 
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.feidian.farmer.dao.entity.PurchaseRecord;
 import com.feidian.farmer.dao.mapper.MaterialMapper;
 import org.springframework.stereotype.Service;
@@ -28,7 +30,9 @@ public class MaterialService {
         materialMapper.insertOne(purchaseRecord);
     }
 
-    public void remove(long rId) {
+    public void removeById(String data) {
+        JSONObject obj = JSON.parseObject(data);
+        long rId = obj.getLong("rId");
         materialMapper.deleteOne(rId);
     }
 

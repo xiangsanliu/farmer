@@ -34,8 +34,7 @@ public class MaterialController {
 
     @RequestMapping(value = "/removeRecord", method = RequestMethod.POST)
     public ResponseBean removeRecord(@RequestBody String data) {
-        long rId = Long.valueOf(data);
-        materialService.remove(rId);
+        materialService.removeById(data);
         return ResponseBean.ok("删除成功");
     }
 
