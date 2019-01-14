@@ -16,7 +16,9 @@ public class UserService {
     @Transactional
     public User getOne(String username) {
         User user = userMapper.selectOneByUsername(username);
-        user.setPermissions(userMapper.selectPermissionsByUserType(user.getUserType()));
+        if (user != null) {
+            user.setPermissions(userMapper.selectPermissionsByUserType(user.getUserType()));
+        }
         return user;
     }
 

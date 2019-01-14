@@ -26,8 +26,8 @@ public class LoginController {
     @RequestMapping(value = "/login", method = RequestMethod.POST)
     public ResponseBean login(@RequestBody String data, HttpSession session) {
         JSONObject jsonObject = JSONObject.parseObject(data);
-        String username = jsonObject.getJSONObject("data").getString("username");
-        String password = jsonObject.getJSONObject("data").getString("password");
+        String username = jsonObject.getString("username");
+        String password = jsonObject.getString("password");
         if ("guest".equals(username)) {
             session.setAttribute(Cons.USER, username);
             return ResponseBean.ok("success");
@@ -36,26 +36,30 @@ public class LoginController {
         User user = userService.getOne(username);
 
         if (user == null) {
-            return ResponseBean.error("No such user!");
+            return ResponseBean.error("该用户不存在！");
         }
         if (user.getPassword().equals(password)) {
             session.setAttribute(Cons.USER, user);
             return ResponseBean.ok("success");
         }
 
-        return ResponseBean.error("Wrong password!");
+        return ResponseBean.error("密码错误");
     }
 
 
     @RequestMapping(value = "/initUser", method = RequestMethod.GET)
     public ResponseBean initUser(HttpSession session) {
         User user = (User) session.getAttribute(Cons.USER);
-        return ResponseBean.ok("success", user);
+        JSONObject obj = new JSONObject();
+        obj.put("username", user.getUsername());
+        obj.put("userType", user.getUserType());
+        return ResponseBean.ok("success", obj);
     }
 
     @RequestMapping(value = "/logout")
-    public void logout(HttpSession session) {
+    public ResponseBean logout(HttpSession session) {
         session.removeAttribute(Cons.USER);
+        return ResponseBean.ok();
     }
 
 }
