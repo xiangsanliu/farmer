@@ -33,6 +33,8 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     private void sendError(HttpServletResponse response, ResponseBean responseBean) throws IOException {
+        response.setCharacterEncoding("utf-8");
+        response.setContentType("text/html; charset=utf-8");
         response.getWriter().write(JSON.toJSONString(responseBean));
     }
 
