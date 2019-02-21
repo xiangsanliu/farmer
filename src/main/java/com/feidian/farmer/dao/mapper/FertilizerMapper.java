@@ -21,8 +21,8 @@ public interface FertilizerMapper {
 
     int deleteOne(@Param("fId") long fId);
 
-    int insertFertilizer(@Param("fertilizer")Fertilizer fertilizer);
+    int insertFertilizer(@Param("fertilizer") Fertilizer fertilizer);
 
-    int insertFIs(@Param("fertilizerIngredients")List<FertilizerIngredient> fertilizerIngredients);
+    int insertFIs(@Param("fertilizerIngredients") List<FertilizerIngredient> fertilizerIngredients);
 
 }

@@ -10,10 +10,17 @@ import java.sql.Date;
 @Getter
 @ToString
 public class PurchaseRecord {
+
     private Long rId;
+
     private String materialName;
+
     private Integer amount;
+
     private Integer price;
+
     private Date purchaseDate;
+
     private String remarks;
+
 }

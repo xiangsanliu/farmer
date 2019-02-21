@@ -6,6 +6,9 @@ import lombok.Setter;
 @Setter
 @Getter
 public class Material {
-    String materialName;
-    Integer price;
+
+    private String materialName;
+
+    private Integer price;
+
 }

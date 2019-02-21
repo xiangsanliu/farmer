@@ -13,14 +13,15 @@ import java.util.List;
 public class User {
 
     // 用户名
-    String username;
+    private String username;
 
     // 密码
-    String password;
+    private String password;
 
     // 用户类型
-    Short userType;
+    private Short userType;
 
-    List<String> permissions;
+    // 用户权限
+    private List<String> permissions;
 
 }

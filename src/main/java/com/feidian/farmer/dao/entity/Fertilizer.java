@@ -5,14 +5,23 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Setter
 @Getter
 @ToString
 public class Fertilizer {
-    Long id;
-    Date fDate;
-    String fName;
-    Short fee;
-    Short lossRate;
+
+    private Long id;
+
+    private Date fDate;
+
+    private String fName;
+
+    private Short fee;
+
+    private Short lossRate;
+
+    private List<FertilizerIngredient> ingredients;
+
 }

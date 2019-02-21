@@ -8,7 +8,11 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Ingredient {
-    Long id;
-    String ingredientName;
-    Short amount;
+
+    private Long id;
+
+    private String ingredientName;
+
+    private Short amount;
+
 }
